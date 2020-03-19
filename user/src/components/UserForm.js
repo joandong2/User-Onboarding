@@ -1,6 +1,7 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 const UserForm = (props) => {
     //console.log("error", props.errors, "touched", props.touched);
@@ -54,11 +55,22 @@ export default withFormik({
     handleSubmit: (values, formikBag) => {
         //console.log("values", values);
         //console.log("bag", formikBag);
-        formikBag.props.addNewUser({
-            ...values,
-            id: Date.now()
-        });
-        formikBag.setStatus("form submitting");
-        formikBag.resetForm();
+        if (values.email === "waffle@syrup.com") {
+            formikBag.setErrors({ email: "That email is already taken" });
+        } else {
+            axios
+                .post("https://reqres.in/api/users", values)
+                .then((res) => {
+                    //console.log(res);
+                    formikBag.props.addNewUser({
+                        ...res.data
+                    });
+                    formikBag.resetForm();
+                })
+                .catch((err) => {
+                    console.log(err); // There was an error creating the data and logs to console
+                    formikBag.resetForm();
+                });
+        }
     }
 })(UserForm);
