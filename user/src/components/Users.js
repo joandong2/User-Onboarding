@@ -1,26 +1,32 @@
 import React from "react";
-//import { Button, Table } from "reactstrap";
+import { Button, Table } from "reactstrap";
 
 const User = (props) => {
     return (
         <div className="users">
-            <h2>Users</h2>
-            {props.users.map((user, i) => (
-                <li key={i}>
-                    <p>{user.id}</p>
-                    <p>{user.name}</p>
-                    {/* <td>
-                        <button
-                            onClick={() => {
-                                props.editMember(member);
-                            }}
-                            className="button muted-button"
-                        >
-                            Edit
-                        </button>
-                    </td> */}
-                </li>
-            ))}
+            <Table hover>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                {props.users.map((user, i) => (
+                    <tr key={i}>
+                        <td>{user.id}</td>
+                        <td>{user.name}</td>
+                        <td>
+                            <button
+                                onClick={() => {
+                                    props.editMember(user);
+                                }}
+                                className="button muted-button"
+                            >
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                ))}
+            </Table>
         </div>
     );
 };

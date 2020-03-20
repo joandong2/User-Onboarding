@@ -1,6 +1,8 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
+import { FormGroup } from "reactstrap";
 import * as Yup from "yup";
+// import "../styles/styles.css";
 import axios from "axios";
 
 const UserForm = (props) => {
@@ -10,17 +12,24 @@ const UserForm = (props) => {
 
     return (
         <Form>
-            <Field type="text" name="name" placeholder="Name" />
-            {props.touched.name && props.errors.name ? (
-                <span className="error">{props.errors.name}</span>
-            ) : null}
+            <FormGroup>
+                <Field
+                    className="form-control"
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                />
+                {props.touched.name && props.errors.name ? (
+                    <p className="error">{props.errors.name}</p>
+                ) : null}
+            </FormGroup>
             <Field type="email" name="email" placeholder="Email" />
             {props.touched.email && props.errors.email ? (
-                <span className="error">{props.errors.email}</span>
+                <p className="error">{props.errors.email}</p>
             ) : null}
             <Field type="password" name="password" placeholder="Password" />
             {props.touched.password && props.errors.password ? (
-                <span className="error">{props.errors.password}</span>
+                <p className="error">{props.errors.password}</p>
             ) : null}
             <label htmlFor="tos">Read the TOS?:</label>
             <Field type="checkbox" name="tos" />
@@ -43,10 +52,14 @@ export default withFormik({
     },
     validationSchema: Yup.object().shape({
         name: Yup.string()
-            .required("Please name.")
-            .min(3, "Must be at least 10 characters long!"),
-        email: Yup.string().email("Please use a valid email"),
-        password: Yup.string().min(3, "Must be at least 10 characters long!"),
+            .required("Name is required.")
+            .min(8, "Must be at least 8 characters long!"),
+        email: Yup.string()
+            .required("Email is required.")
+            .email("Please use a valid emai.l"),
+        password: Yup.string()
+            .required("Password is required.")
+            .min(8, "Must be at least 8 characters long!"),
         tos: Yup.boolean().oneOf(
             [true],
             "Must read Terms of Service to Continue"
