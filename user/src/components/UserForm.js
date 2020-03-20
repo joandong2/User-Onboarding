@@ -100,7 +100,7 @@ export default withFormik({
             axios
                 .post("https://reqres.in/api/users", values)
                 .then((res) => {
-                    //console.log(res);
+                    console.log(res);
                     formikBag.props.addNewUser({
                         ...res.data
                     });
