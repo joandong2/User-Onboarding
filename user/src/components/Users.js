@@ -8,12 +8,14 @@ const User = (props) => {
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Email Address</th>
                     <th>Actions</th>
                 </tr>
                 {props.users.map((user, i) => (
                     <tr key={i}>
                         <td>{user.id}</td>
                         <td>{user.name}</td>
+                        <td>{user.email}</td>
                         <td>
                             <button
                                 onClick={() => {

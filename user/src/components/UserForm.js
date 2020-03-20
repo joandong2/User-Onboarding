@@ -1,6 +1,6 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
-import { FormGroup } from "reactstrap";
+import { FormGroup, Button } from "reactstrap";
 import * as Yup from "yup";
 import axios from "axios";
 
@@ -25,20 +25,44 @@ const UserForm = (props) => {
                     <p className="error">{props.errors.name}</p>
                 ) : null}
             </FormGroup>
-            <Field type="email" name="email" placeholder="Email" />
-            {props.touched.email && props.errors.email ? (
-                <p className="error">{props.errors.email}</p>
-            ) : null}
-            <Field type="password" name="password" placeholder="Password" />
-            {props.touched.password && props.errors.password ? (
-                <p className="error">{props.errors.password}</p>
-            ) : null}
-            <label htmlFor="tos">Read the TOS?:</label>
-            <Field type="checkbox" name="tos" />
-            {props.touched.tos && props.errors.tos ? (
-                <span className="error">{props.errors.tos}</span>
-            ) : null}
-            <button type="submit">Create New User</button>
+            <FormGroup>
+                <Field
+                    className="form-control"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                />
+                {props.touched.email && props.errors.email ? (
+                    <p className="error">{props.errors.email}</p>
+                ) : null}
+            </FormGroup>
+            <FormGroup>
+                <Field
+                    className="form-control"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                />
+                {props.touched.password && props.errors.password ? (
+                    <p className="error">{props.errors.password}</p>
+                ) : null}
+            </FormGroup>
+            <FormGroup>
+                <Field
+                    className="form-check-input"
+                    type="checkbox"
+                    name="tos"
+                />
+                <label className="form-check-label" htmlFor="tos">
+                    Read the Terms of Services
+                </label>
+                {props.touched.tos && props.errors.tos ? (
+                    <p className="error">{props.errors.tos}</p>
+                ) : null}
+            </FormGroup>
+            <Button color="primary" type="submit">
+                Create New User
+            </Button>
         </Form>
     );
 };

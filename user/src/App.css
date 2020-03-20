@@ -1,9 +1,9 @@
 .App {
-    /* text-align: center; */
+    margin-top: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 65vh;
+    height: 40vh;
 }
 
 .App-logo {
