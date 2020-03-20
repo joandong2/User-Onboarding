@@ -2,8 +2,10 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import { FormGroup } from "reactstrap";
 import * as Yup from "yup";
-// import "../styles/styles.css";
 import axios from "axios";
+
+//styles
+import "../styles/styles.css";
 
 const UserForm = (props) => {
     //console.log("error", props.errors, "touched", props.touched);
