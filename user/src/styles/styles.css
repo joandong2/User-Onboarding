@@ -1,0 +1,12 @@
+form .form-check-input {
+    margin-left: 0rem;
+}
+
+form .form-check-label {
+    margin-left: 1rem;
+}
+
+p.error {
+    color: red;
+    margin: 3px 0 0 3px;
+}
